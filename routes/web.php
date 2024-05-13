@@ -44,6 +44,7 @@ use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
@@ -121,3 +122,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'create'])->middleware('guest');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+Route::get('/master-project', [ProjectController::class, 'index'])->middleware('auth');
+Route::get('/master-project/create', [ProjectController::class, 'create'])->name('project-create')->middleware('auth');
+Route::post('/master-project/create', [ProjectController::class, 'store'])->name('project-store')->middleware('auth');
