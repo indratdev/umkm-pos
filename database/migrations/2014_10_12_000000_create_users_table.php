@@ -24,7 +24,7 @@ return new class extends Migration
       $table->integer('actived')->default(1);
       $table->integer('deleted')->default(0);
       $table->timestamp('deleted_on')->nullable();
-      $table->timestamp('deleted_by')->nullable();
+      $table->integer('deleted_by')->nullable();
     });
   }
 

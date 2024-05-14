@@ -42,10 +42,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-company">Address</label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Jalan Panglima Polim VII" {{-- aria-describedby="basic-icon-default-message2"  --}}
-                                    name="address">
-                                    {{-- {{ old('address') }} --}}
-                                  </textarea>
+                                <textarea id="basic-default-message" class="form-control" placeholder="Jalan Panglima Polim VII"
+                                    aria-describedby="basic-icon-default-message2" name="address">{{ old('address') }}</textarea>
                             </div>
                         </div>
                         <div class="row mb-3">

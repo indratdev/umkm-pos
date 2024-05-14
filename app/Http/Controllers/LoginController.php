@@ -37,9 +37,6 @@ class LoginController extends Controller
 
     return back()
       ->with('loginError', 'Login Failed!')
-      // ->withErrors([
-      //   'email' => 'The provided credentials do not match our records.',
-      // ])
       ->onlyInput('email');
   }
 

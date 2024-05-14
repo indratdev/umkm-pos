@@ -7,8 +7,24 @@
         Master Project
     </h4>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+
     <div class="p-2 d-flex justify-content-end">
-        <button type="button" class="btn btn-primary"><a href="{{ route('project-create') }}">Add New</a> </button>
+        <a href="{{ route('project-create') }}" class="btn btn-primary">Add New</a>
+        {{-- <button type="button" class="btn btn-primary"> </button> --}}
     </div>
     <!-- Basic Bootstrap Table -->
     <div class="card">
@@ -43,37 +59,53 @@
                                 @endif
                             </td>
 
-                            {{-- <td>
-                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                        <img src="{{ asset('assets/img/avatars/5.png') }}" alt="Avatar"
-                                            class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                        <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar"
-                                            class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title="Christina Parker">
-                                        <img src="{{ asset('assets/img/avatars/7.png') }}" alt="Avatar"
-                                            class="rounded-circle">
-                                    </li>
-                                </ul>
-                            </td> --}}
+
                             <td><span class="badge bg-label-primary me-1">Active</span></td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                         data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                        <a class="dropdown-item" href="/master-project/{{ $dataProject->id }}"><i
                                                 class="bx bx-edit-alt me-1"></i>
                                             Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                            Delete</a>
+                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modalToggle{{ $dataProject->id }}">
+                                            <i class="bx bx-trash me-1"></i> Delete
+                                        </a>
                                     </div>
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalToggle{{ $dataProject->id }}" tabindex="-1"
+                                        aria-labelledby="modalToggleLabel{{ $dataProject->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalToggleLabel{{ $dataProject->id }}">
+                                                        Confirm Delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this project?
+                                                    [{{ $dataProject->name }}]
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="POST"
+                                                        action="/master-project/{{ $dataProject->id }}/delete">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </td>
                         </tr>

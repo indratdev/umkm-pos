@@ -1,15 +1,34 @@
 {
   "menu": [
     {
+      "url": "/dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bxs-dashboard",
+      "slug": "dashboard"
+    },
+    {
       "url": "/",
-      "name": "Masters",
+      "name": "Master",
       "icon": "menu-icon tf-icons bx bx-home-circle",
-      "slug": "masters",
+      "slug": "master",
       "submenu": [
         {
           "url": "/master-project",
           "name": "Master Project",
           "slug": "master-project"
+        }
+      ]
+    },
+    {
+      "url": "/settings",
+      "name": "Setting",
+      "icon": "menu-icon tf-icons bx bx-cog",
+      "slug": "setting",
+      "submenu": [
+        {
+          "url": "/profile",
+          "name": "Profile",
+          "slug": "profile"
         }
       ]
     }

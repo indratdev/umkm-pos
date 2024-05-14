@@ -24,6 +24,8 @@ return new class extends Migration
       $table->integer('is_headquarters')->default(0);
       $table->integer('actived')->default(1);
       $table->integer('deleted')->default(0);
+      $table->timestamp('deleted_at')->nullable();
+      $table->integer('deleted_by')->nullable();
       $table->timestamps();
     });
   }

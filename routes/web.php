@@ -123,6 +123,9 @@ Route::post('/register', [RegisterController::class, 'create'])->middleware('gue
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/master-project', [ProjectController::class, 'index'])->middleware('auth');
+Route::get('/master-project', [ProjectController::class, 'index'])->name('project-index')->middleware('auth');
 Route::get('/master-project/create', [ProjectController::class, 'create'])->name('project-create')->middleware('auth');
 Route::post('/master-project/create', [ProjectController::class, 'store'])->name('project-store')->middleware('auth');
+Route::get('/master-project/{id}', [ProjectController::class, 'edit'])->name('project-edit')->middleware('auth');
+Route::put('/master-project/{id}', [ProjectController::class, 'update'])->name('project-update')->middleware('auth');
+Route::put('/master-project/{id}/delete', [ProjectController::class, 'delete'])->name('project-delete')->middleware('auth');
