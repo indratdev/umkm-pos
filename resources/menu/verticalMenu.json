@@ -14,8 +14,13 @@
       "submenu": [
         {
           "url": "/master-project",
-          "name": "Master Project",
+          "name": "Project",
           "slug": "master-project"
+        },
+        {
+          "url": "/master-goods-services",
+          "name": "Goods or Services",
+          "slug": "master-goods-services"
         }
       ]
     },

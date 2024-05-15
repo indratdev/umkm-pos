@@ -21,6 +21,7 @@ return new class extends Migration
       $table->rememberToken();
       $table->timestamps();
       $table->string('role')->default('staff');
+      $table->string('pid');
       $table->integer('actived')->default(1);
       $table->integer('deleted')->default(0);
       $table->timestamp('deleted_on')->nullable();

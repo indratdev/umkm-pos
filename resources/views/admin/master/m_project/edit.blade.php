@@ -90,6 +90,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-default-phone">Active</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input type="hidden" name="actived" value="0">
+                                        <!-- Input tersembunyi untuk nilai 0 -->
+                                        <input class="form-check-input" type="checkbox" value="1"
+                                            id="defaultCheck4" {{ $data->actived == '1' ? 'checked="checked"' : '' }}
+                                            name="actived">
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row justify-content-end">
                                 <div class="col-sm-10">

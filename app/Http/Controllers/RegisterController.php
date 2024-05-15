@@ -10,12 +10,16 @@ class RegisterController extends Controller
 
   protected $userController;
   protected $projectController;
+  protected $utilityController;
+  protected $accessUsersController;
 
 
-  public function __construct(UserController $userController, ProjectController $projectController)
+  public function __construct(UserController $userController, ProjectController $projectController, UtilityController $utilityController, AccessUserController $accessUsersController)
   {
     $this->userController = $userController;
     $this->projectController = $projectController;
+    $this->utilityController = $utilityController;
+    $this->accessUsersController = $accessUsersController;
   }
 
 
@@ -43,8 +47,9 @@ class RegisterController extends Controller
     $password = bcrypt($request->input('password'));
     $token = $request->input('_token');
     $businessName = $request->input('businessName');
+    $pid = $this->utilityController->generatePid($email);
 
-    $result = DB::statement("CALL sp_register_user(?, ?, ?, ?, ?)", [$fullname, $email, $password, 'owner', $token]);
+    $result = DB::statement("CALL sp_register_user(?, ?, ?, ?, ?, ?)", [$fullname, $email, $password, 'owner', $token, $pid]);
 
     if (!$request) {
       return redirect()->back()->with('error', 'Failed registration new user');
@@ -54,8 +59,10 @@ class RegisterController extends Controller
     $users = $this->userController->getUser($email);
 
     // insert master project
-    $mproject = $this->projectController->createProject($users->id, $businessName);
+    $branch_id = $this->projectController->createProject($users->id, $businessName, $pid);
 
+    // insert m_access_users
+    $this->accessUsersController->createAccessUser($pid, $branch_id, $users->id);
 
     $message = 'Registration Successfully!';
     return redirect()->back()->with('success_register', $message);

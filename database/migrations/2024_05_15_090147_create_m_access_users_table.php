@@ -11,20 +11,15 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('m_projects', function (Blueprint $table) {
+    Schema::create('m_access_users', function (Blueprint $table) {
       $table->id();
-      $table->integer('owner_id');
       $table->string('pid');
-      $table->string('name');
-      $table->string('address')->nullable();
-      $table->string('province')->nullable();
-      $table->string('city')->nullable();
-      $table->string('zipcode')->nullable();
-      $table->string('npwp')->nullable();
-      $table->string('phone')->nullable();
-      $table->integer('is_headquarters')->default(0);
+      $table->string('branch_id');
+      $table->string('user_id');
       $table->integer('actived')->default(1);
       $table->integer('deleted')->default(0);
+      $table->timestamp('modification_at')->nullable();
+      $table->integer('modification_by')->nullable();
       $table->timestamp('deleted_at')->nullable();
       $table->integer('deleted_by')->nullable();
       $table->timestamps();
@@ -36,6 +31,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('m_projects');
+    Schema::dropIfExists('m_access_users');
   }
 };

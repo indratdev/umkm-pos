@@ -27,22 +27,23 @@ class ProjectController extends Controller
       'data' => $m_project_data,
     ];
 
-    return view('m_project.index', $datas);
+    return view('admin.master.m_project.index', $datas);
   }
 
 
   // CREATE
   public function create()
   {
-    return view('m_project.create');
+    return view('admin.master.m_project.create');
   }
 
   public function store(Request $request)
   {
-    $user = Auth::user()->id;
+    $user = Auth::user();
 
     $result =  DB::table('m_projects')->insert([
-      'owner_id' => $user,
+      'owner_id' => $user->id,
+      'pid' => $user->pid,
       'name' => $request->input('name'),
       'address' => $request->input('address'),
       'province' => $request->input('province'),
@@ -64,10 +65,11 @@ class ProjectController extends Controller
     return redirect()->back()->with('success', $message);
   }
 
-  public function createProject(string $ownerId, string $name)
+  public function createProject(string $ownerId, string $name, string $pid)
   {
-    return DB::table('m_projects')->insert([
+    return DB::table('m_projects')->insertGetId([
       'owner_id' => $ownerId,
+      'pid' => $pid,
       'name' => $name,
       'is_headquarters' => '1',
       'actived' => '1',
@@ -82,7 +84,6 @@ class ProjectController extends Controller
     $project = DB::table('m_projects')
       ->select('*')
       ->where('id', '=', $id)
-      ->where('actived', '=', '1')
       ->where('deleted', '=', '0')
       ->get();
 
@@ -92,7 +93,7 @@ class ProjectController extends Controller
       'datas' => $project
     ];
 
-    return view('m_project.edit', $data);
+    return view('admin.master.m_project.edit', $data);
   }
 
   public function update(Request $request, string $id)
@@ -105,11 +106,12 @@ class ProjectController extends Controller
     $npwp =  $request->input('npwp');
     $phone =  $request->input('phone');
     $is_headquarters =  $request->input('is_headquarters');
+    $actived =  $request->input('actived');
 
 
     $request = DB::statement(
-      "CALL sp_update_master_project(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      [$name, $address, $province, $city, $zipcode, $npwp, $phone, $is_headquarters, $id]
+      "CALL sp_update_master_project(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [$name, $address, $province, $city, $zipcode, $npwp, $phone, $is_headquarters, $id, $actived]
     );
 
     if (!$request || $id <= 0) {

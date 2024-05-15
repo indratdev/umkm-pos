@@ -38,7 +38,7 @@
                         <th>Owner</th>
                         <th>Project</th>
                         <th>Address</th>
-                        <th>Is Headquarters</th>
+                        <th>Headquarters</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -53,14 +53,20 @@
 
                             <td>
                                 @if ($dataProject->is_headquarters == 1)
-                                    <span class="badge bg-label-primary me-1">YES</span>
+                                    <span class="badge bg-label-primary me-1">Head Office</span>
                                 @else
-                                    <span class="badge bg-label-danger me-1">No</span>
+                                    <span class="badge bg-label-warning me-1">Branch</span>
                                 @endif
                             </td>
 
 
-                            <td><span class="badge bg-label-primary me-1">Active</span></td>
+                            <td>
+                                @if ($dataProject->actived == 1)
+                                    <span class="badge bg-label-primary me-1">Active</span>
+                                @else
+                                    <span class="badge bg-label-warning me-1">Non Active</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

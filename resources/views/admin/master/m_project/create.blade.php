@@ -78,18 +78,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-email">Email</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <input type="text" id="basic-default-email" class="form-control"
-                                        placeholder="john.doe" aria-label="john.doe"
-                                        aria-describedby="basic-default-email2" />
-                                    <span class="input-group-text" id="basic-default-email2">@example.com</span>
-                                </div>
-                                <div class="form-text"> You can use letters, numbers & periods </div>
-                            </div>
-                        </div> --}}
+
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-phone">Phone No</label>
