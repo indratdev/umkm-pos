@@ -25,6 +25,12 @@
       ]
     },
     {
+      "url": "/user-management",
+      "name": "User Management",
+      "icon": "menu-icon tf-icons bx bxs-user-account",
+      "slug": "user-management"
+    },
+    {
       "url": "/settings",
       "name": "Setting",
       "icon": "menu-icon tf-icons bx bx-cog",

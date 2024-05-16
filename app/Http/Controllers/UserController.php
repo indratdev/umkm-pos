@@ -22,4 +22,9 @@ class UserController extends Controller
   {
     return Auth::user()->id;
   }
+
+  public function getAllUser()
+  {
+    return DB::select('CALL sp_read_user_all');
+  }
 }

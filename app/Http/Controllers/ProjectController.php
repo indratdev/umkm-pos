@@ -20,7 +20,6 @@ class ProjectController extends Controller
   public function index()
   {
     $m_project_data = $this->readMasterProject(0);
-    // dd($m_project_data);
 
     $datas = [
       'content' => 'users.index',

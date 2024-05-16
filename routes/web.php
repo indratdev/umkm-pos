@@ -47,6 +47,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\UserManagementController;
 
 // Main Page Route
 // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -123,9 +124,18 @@ Route::post('/register', [RegisterController::class, 'create'])->middleware('gue
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
+// master project
 Route::get('/master-project', [ProjectController::class, 'index'])->name('project-index')->middleware('auth');
 Route::get('/master-project/create', [ProjectController::class, 'create'])->name('project-create')->middleware('auth');
 Route::post('/master-project/create', [ProjectController::class, 'store'])->name('project-store')->middleware('auth');
 Route::get('/master-project/{id}', [ProjectController::class, 'edit'])->name('project-edit')->middleware('auth');
 Route::put('/master-project/{id}', [ProjectController::class, 'update'])->name('project-update')->middleware('auth');
 Route::put('/master-project/{id}/delete', [ProjectController::class, 'delete'])->name('project-delete')->middleware('auth');
+
+// user-managements
+Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management-index')->middleware('auth');
+Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management-create')->middleware('auth');
+Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management-store')->middleware('auth');
+Route::get('/user-management/{id}', [UserManagementController::class, 'edit'])->name('user-management-edit')->middleware('auth');
+Route::put('/user-management/{id}', [UserManagementController::class, 'update'])->name('user-management-update')->middleware('auth');
+Route::put('/user-management/{id}/delete', [UserManagementController::class, 'delete'])->name('user-management-delete')->middleware('auth');
