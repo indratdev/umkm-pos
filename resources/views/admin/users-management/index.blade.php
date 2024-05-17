@@ -23,7 +23,7 @@
 
 
     <div class="p-2 d-flex justify-content-end">
-        {{-- <a href="{{ route('project-create') }}" class="btn btn-primary">Add New</a>         --}}
+        <a href="{{ route('user-management-create') }}" class="btn btn-primary">Add New</a>
     </div>
     <!-- Basic Bootstrap Table -->
     <div class="card">

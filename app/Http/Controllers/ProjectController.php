@@ -26,14 +26,14 @@ class ProjectController extends Controller
       'data' => $m_project_data,
     ];
 
-    return view('admin.master.m_project.index', $datas);
+    return view('admin.master.m-project.index', $datas);
   }
 
 
   // CREATE
   public function create()
   {
-    return view('admin.master.m_project.create');
+    return view('admin.master.m-project.create');
   }
 
   public function store(Request $request)
@@ -92,7 +92,7 @@ class ProjectController extends Controller
       'datas' => $project
     ];
 
-    return view('admin.master.m_project.edit', $data);
+    return view('admin.master.m-project.edit', $data);
   }
 
   public function update(Request $request, string $id)
