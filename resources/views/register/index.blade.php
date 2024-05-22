@@ -60,19 +60,10 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="fullname" class="form-label">FullName</label>
-                                {{-- @error('fullname')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror --}}
-                                <input type="text" class="form-control" {{-- @error('fullname') is-invalid @enderror --}} id="fullname"
-                                    name="fullname" placeholder="Enter your fullname" value="{{ old('fullname') }}"
-                                    autofocus required>
-                                {{-- @error('fullname')
-                                    <div class="invalid-feedback">
-                                        Please Input fullname
-                                    </div>
-                                @enderror --}}
+
+                                <input type="text" class="form-control" id="fullname" name="fullname"
+                                    placeholder="Enter your fullname" value="{{ old('fullname') }}" autofocus required>
+
                             </div>
 
                             <div class="mb-3">

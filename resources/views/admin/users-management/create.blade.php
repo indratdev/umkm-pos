@@ -26,9 +26,6 @@
         <!-- Basic Layout -->
         <div class="col-xxl">
             <div class="card mb-4">
-                {{-- <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Basic Layout</h5> <small class="text-muted float-end">Default label</small>
-                </div> --}}
                 <div class="card-body">
                     <form id="formCreateProject" class="mb-3" action="/user-management/create" method="POST">
                         @csrf
@@ -47,12 +44,32 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Fullname</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="basic-default-name" placeholder="John Doe"
-                                    name="name" value="{{ old('name') }}" />
+                                    name="fullname" value="{{ old('fullname') }}" />
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-company">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" name="email"
+                                    placeholder="Enter your email" value="{{ old('email') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-password">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="password" class="form-control" name="password"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+
+
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-company">Address</label>
                             <div class="col-sm-10">
@@ -60,37 +77,19 @@
                                     aria-describedby="basic-icon-default-message2" name="address">{{ old('address') }}</textarea>
                             </div>
                         </div>
+
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">Province</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-identity-number">No. Identity
+                                (KTP)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company"
-                                    placeholder="DKI Jakarta" name="province" value="{{ old('province') }}" />
+                                <input type="text" id="basic-default-identity-number" class="form-control phone-mask"
+                                    placeholder="658 799 8941" aria-label="658 799 8941"
+                                    aria-describedby="basic-default-identity-number" name="identity_number"
+                                    value="{{ old('identity_number') }}" />
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">City</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company"
-                                    placeholder="Jakarta Selatan" name="city" value="{{ old('city') }}" />
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">ZIP Code</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company" placeholder="13555"
-                                    name="zipcode" value="{{ old('zipcode') }}" />
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">NPWP</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company"
-                                    placeholder="01032122233xxxx" name="npwp" value="{{ old('npwp') }}" />
-                            </div>
-                        </div>
 
 
 
@@ -104,27 +103,64 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Is Headquarters</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-gender">Gender</label>
                             <div class="col-sm-10">
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="radio" value="male" id="gender-male"
+                                        name="gender" />
+                                    <label class="form-check-label" for="gender-male">
+                                        Male
+                                    </label>
+                                </div>
                                 <div class="form-check">
-                                    <input type="hidden" name="is_headquarters" value="0">
-                                    <!-- Input tersembunyi untuk nilai 0 -->
-                                    <input class="form-check-input" type="checkbox" value="1" id="defaultCheck3"
-                                        {{ old('is_headquarters') == 'on' ? 'checked="checked"' : '' }}
-                                        name="is_headquarters">
+                                    <input class="form-check-input" type="radio" value="female" id="gender-female"
+                                        name="gender" checked />
+                                    <label class="form-check-label" for="gender-female">
+                                        Female
+                                    </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row justify-content-end">
+                        {{-- role --}}
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-gender">Role</label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="owner" id="role-owner"
+                                        name="role" />
+                                    <label class="form-check-label" for="role-owner">
+                                        Owner
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="admin" id="role-admin"
+                                        name="role" />
+                                    <label class="form-check-label" for="role-admin">
+                                        Admin
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="staff" id="role-staff"
+                                        name="role" checked />
+                                    <label class="form-check-label" for="role-staff">
+                                        Staff
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </form>
                 </div>
+
+
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
 @endsection
